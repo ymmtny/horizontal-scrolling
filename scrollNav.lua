@@ -176,8 +176,11 @@ function scrollNav.new(params)
     end       
     self.velocity = self.velocity * friction
     --print("enterFrame "..self.x.." "..self.velocity .. " "..timePassed)
-
-    self.x = math.floor(self.x + self.velocity * timePassed)
+    if self.velocity > 0 then
+     self.x = self.x + self.velocity * timePassed
+    else  
+     self.x = math.floor(self.x + self.velocity * timePassed)
+    end
     --print ("%%"..self.x)
     
     local leftLimit = self.left 
