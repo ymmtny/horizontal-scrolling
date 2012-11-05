@@ -73,7 +73,7 @@ function scrollNav.new(params)
     function trackVelocity(event)   
       local timePassed = event.time - self.prevTime
       self.prevTime = self.prevTime + timePassed
-      if self.prevX and timePassed > 0 then 
+      if (self.x - self.prevX ~= 0)  and timePassed > 0 then 
         self.velocity = (self.x - self.prevX) / timePassed 
      --  print (self.x.." ".." "..self.prevX.." "..timePassed.." "..self.velocity)
       end
@@ -167,12 +167,12 @@ function scrollNav.new(params)
       self.velocity = 0
       Runtime:removeEventListener("enterFrame", self)          
       transition.to(self.scrollBar,  { time=400, alpha=0 })    
-    else
-      if self.velocity > 0 then
-        self.x = self.x + 0.1
-      else
-        self.x = self.x - 0.1 
-      end                    
+    -- else
+    --   if self.velocity > 0 then
+    --     self.x = self.x + 0.1
+    --   else
+    --     self.x = self.x - 0.1 
+    --   end                    
     end       
     self.velocity = self.velocity * friction
     --print("enterFrame "..self.x.." "..self.velocity .. " "..timePassed)
